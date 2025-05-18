@@ -12,16 +12,36 @@
             background-color: #f4f4f9;
         }
 
-        /* Menú de navegación */
-        nav {
-            background-color: #333;
-            position: fixed; /* Hace que el menú se quede fijo */
+        /* Estilo del nombre de la página */
+        .header-container {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000; /* Asegura que esté por encima de todo */
+            background-color: #4CAF50;
+            padding: 15px 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .header-container h1 {
+            font-size: 32px;
+            color: white;
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* Menú de navegación fijo */
+        nav {
+            background-color: #333;
+            position: fixed;
+            top: 60px; /* Deja espacio para el nombre de la página */
+            left: 0;
+            width: 100%;
+            z-index: 999;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añade sombra para dar profundidad */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -40,7 +60,7 @@
 
         /* Estilos para el contenido */
         body {
-            padding-top: 60px; /* Evita que el contenido se superponga al menú */
+            padding-top: 120px; /* Evita que el contenido se superponga al menú */
         }
 
         section {
@@ -48,7 +68,7 @@
             margin: 20px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra para darle un buen aspecto */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         header {
@@ -80,9 +100,10 @@
 </head>
 <body>
 
-<header>
+<!-- Nombre de la página fijo en la parte superior -->
+<div class="header-container">
     <h1>InoMind</h1>
-</header>
+</div>
 
 <!-- Menú de navegación fijo -->
 <nav>
