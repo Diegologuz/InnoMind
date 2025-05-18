@@ -86,6 +86,34 @@
             position: relative;
         }
 
+        /* Estilo para el Test */
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
         /* Responsive: Asegura que el menú y el contenido se ajusten bien en pantallas más pequeñas */
         @media screen and (max-width: 600px) {
             nav a {
@@ -109,7 +137,7 @@
 <nav>
     <a href="#inicio">Inicio</a>
     <a href="#costo">Costo</a>
-    <a href="#costo">Fórmulas de Excel</a>
+    <a href="#fórmulas">Fórmulas de Excel</a>
     <a href="#quienes-somos">¿Quiénes somos?</a>
     <a href="#contacto">Contacto</a>
     <a href="#blog">Blog</a>
@@ -119,6 +147,58 @@
 <section id="inicio">
     <h2>Bienvenidos a InnoMind</h2>
     <p>La mente y la tecnología fusionadas para un futuro brillante.</p>
+</section>
+
+<!-- Sección de Test -->
+<section id="fórmulas">
+    <h2>Test de Evaluación de Excel</h2>
+    <div class="quiz-container">
+        <form id="quizForm">
+            <div class="question">
+                ¿Qué fórmula se usa para sumar un rango de celdas?
+            </div>
+            <div class="options">
+                <input type="radio" name="q1" value="A"> A) `=SUMAR.SI()`<br>
+                <input type="radio" name="q1" value="B"> B) `=SUMA()`<br>
+                <input type="radio" name="q1" value="C"> C) `=PROMEDIO()`<br>
+                <input type="radio" name="q1" value="D"> D) `=CONCATENAR()`<br>
+            </div>
+
+            <div class="question">
+                ¿Qué fórmula usarías para encontrar el valor máximo de un rango de celdas?
+            </div>
+            <div class="options">
+                <input type="radio" name="q2" value="A"> A) `=DESVEST()`<br>
+                <input type="radio" name="q2" value="B"> B) `=MAX()`<br>
+                <input type="radio" name="q2" value="C"> C) `=MIN()`<br>
+                <input type="radio" name="q2" value="D"> D) `=SI()`<br>
+            </div>
+
+            <div class="question">
+                ¿Cómo puedes organizar datos de manera ascendente o descendente en Excel?
+            </div>
+            <div class="options">
+                <input type="radio" name="q3" value="A"> A) Usando filtros<br>
+                <input type="radio" name="q3" value="B"> B) Usando tablas dinámicas<br>
+                <input type="radio" name="q3" value="C"> C) Usando la opción de "Ordenar" en el menú de "Datos"<br>
+                <input type="radio" name="q3" value="D"> D) Usando la función "BuscarV"<br>
+            </div>
+
+            <div class="question">
+                ¿Qué hace la función `BUSCARV()`?
+            </div>
+            <div class="options">
+                <input type="radio" name="q4" value="A"> A) Busca un valor en una celda.<br>
+                <input type="radio" name="q4" value="B"> B) Busca un valor en una columna y devuelve un valor en la misma fila, pero de otra columna.<br>
+                <input type="radio" name="q4" value="C"> C) Suma un rango de celdas.<br>
+                <input type="radio" name="q4" value="D"> D) Calcula el promedio de un rango de datos.<br>
+            </div>
+
+            <button type="button" onclick="checkAnswers()">Enviar Test</button>
+        </form>
+
+        <div class="result" id="result"></div>
+    </div>
 </section>
 
 <!-- Sección de Costo -->
@@ -147,8 +227,37 @@
 
 <!-- Pie de página -->
 <footer>
-    <p>&copy; 2025 InnffoMind. Todos los derechos reservados.</p>
+    <p>&copy; 2025 InnoMind. Todos los derechos reservados.</p>
 </footer>
+
+<script>
+    function checkAnswers() {
+        var score = 0;
+        var totalQuestions = 4;
+        var result = "";
+
+        var q1 = document.querySelector('input[name="q1"]:checked');
+        var q2 = document.querySelector('input[name="q2"]:checked');
+        var q3 = document.querySelector('input[name="q3"]:checked');
+        var q4 = document.querySelector('input[name="q4"]:checked');
+
+        if (q1 && q1.value === 'B') score++;
+        if (q2 && q2.value === 'B') score++;
+        if (q3 && q3.value === 'C') score++;
+        if (q4 && q4.value === 'B') score++;
+
+        // Resultados
+        if (score <= 1) {
+            result = "Nivel Básico. Recomendamos el curso básico de Excel.";
+        } else if (score == 2 || score == 3) {
+            result = "Nivel Intermedio. Recomendamos el curso intermedio de Excel.";
+        } else {
+            result = "Nivel Avanzado. Recomendamos el curso avanzado de Excel.";
+        }
+
+        document.getElementById("result").innerText = result;
+    }
+</script>
 
 </body>
 </html>
