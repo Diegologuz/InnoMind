@@ -69,6 +69,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none; /* Ocultamos todas las secciones al inicio */
         }
 
         header {
@@ -134,13 +135,13 @@
 
 <!-- Menú de navegación fijo -->
 <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#costo">Costo</a>
-    <a href="#fórmulas">Fórmulas de Excel</a>
-    <a href="#test">Test de Evaluación</a>
-    <a href="#quienes-somos">¿Quiénes somos?</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#blog">Blog</a>
+    <a href="#inicio" onclick="showSection('inicio')">Inicio</a>
+    <a href="#costo" onclick="showSection('costo')">Costo</a>
+    <a href="#fórmulas" onclick="showSection('fórmulas')">Fórmulas de Excel</a>
+    <a href="#test" onclick="showSection('test')">Test de Evaluación</a>
+    <a href="#quienes-somos" onclick="showSection('quienes-somos')">¿Quiénes somos?</a>
+    <a href="#contacto" onclick="showSection('contacto')">Contacto</a>
+    <a href="#blog" onclick="showSection('blog')">Blog</a>
 </nav>
 
 <!-- Sección de Inicio -->
@@ -244,31 +245,19 @@
 </footer>
 
 <script>
-    function checkAnswers() {
-        var score = 0;
-        var totalQuestions = 4;
-        var result = "";
+    // Función para mostrar las secciones al hacer clic en los enlaces del menú
+    function showSection(id) {
+        // Ocultar todas las secciones
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => section.style.display = 'none');
 
-        var q1 = document.querySelector('input[name="q1"]:checked');
-        var q2 = document.querySelector('input[name="q2"]:checked');
-        var q3 = document.querySelector('input[name="q3"]:checked');
-        var q4 = document.querySelector('input[name="q4"]:checked');
+        // Mostrar la sección correspondiente
+        document.getElementById(id).style.display = 'block';
+    }
 
-        if (q1 && q1.value === 'B') score++;
-        if (q2 && q2.value === 'B') score++;
-        if (q3 && q3.value === 'C') score++;
-        if (q4 && q4.value === 'B') score++;
-
-        // Resultados
-        if (score <= 1) {
-            result = "Nivel Básico. Recomendamos el curso básico de Excel.";
-        } else if (score == 2 || score == 3) {
-            result = "Nivel Intermedio. Recomendamos el curso intermedio de Excel.";
-        } else {
-            result = "Nivel Avanzado. Recomendamos el curso avanzado de Excel.";
-        }
-
-        document.getElementById("result").innerText = result;
+    // Mostrar la primera sección (Inicio) al cargar la página
+    window.onload = function() {
+        showSection('inicio');
     }
 </script>
 
